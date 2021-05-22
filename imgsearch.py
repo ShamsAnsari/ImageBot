@@ -57,5 +57,5 @@ def clean_query(query):
       Cleans the query, remove any troublesome characters
     '''
     query = query.encode("ascii", "ignore").decode()
-    query = re.sub(r'\W+', '', query).strip()
+    query = re.sub(r'[^a-zA-Z0-9 ]','', query).strip()
     return query
