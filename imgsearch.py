@@ -29,10 +29,9 @@ class ImageSearch():
         querystring = {"q": query, "pageNumber": "1", "pageSize": "1", "autoCorrect": "true"}
 
         headers = {
-            'x-rapidapi-key': os.environ['x-rapidapi-key'],
+            'x-rapidapi-key': os.environ.get('x-rapidapi-key'),
             'x-rapidapi-host': "contextualwebsearch-websearch-v1.p.rapidapi.com"
         }
-
 
         response = requests.request("GET", url, headers=headers, params=querystring).text
         j = json.loads(response)

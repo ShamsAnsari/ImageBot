@@ -3,6 +3,9 @@ from dotenv import load_dotenv
 from discord.ext import commands
 import os
 
+#load .env
+load_dotenv()
+
 #create the bot object
 bot = commands.Bot(command_prefix='!', case_insensitive=True)
 
@@ -28,5 +31,5 @@ async def on_ready():
   print('--------------------------')
 
 
-load_dotenv()
+
 bot.run(os.environ.get('TOKEN'))
