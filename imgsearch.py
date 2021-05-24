@@ -35,6 +35,8 @@ class ImageSearch():
 
         response = requests.request("GET", url, headers=headers, params=querystring).text
         j = json.loads(response)
+        if len(j['value']) == 0:
+            return None
         img_url = j['value'][0]['url']
         return img_url
 

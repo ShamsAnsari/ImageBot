@@ -22,6 +22,8 @@ class Grabber(commands.Cog):
             return await ctx.send(f'<@{ctx.author.id}>, No image to grab!')
 
         img_url = imgsearch.ImageSearch().image_search(query)
+        if img_url == None:
+            return await ctx.send(f'<@{ctx.author.id}>, No image found!')
         e = discord.Embed(color=discord.Color.teal(), title=query)
         e.set_image(url=img_url)
         await ctx.send(embed=e)
