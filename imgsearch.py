@@ -5,51 +5,35 @@ Searches for images
 # add your name here if you are in this project
 """
 
-from bs4 import BeautifulSoup
 import json
-import urllib.request, urllib.error, urllib.parse
 import re
+import requests
+
+
+
 
 class ImageSearch():
     def __init__(self):
         pass
 
-    def get_soup(self, url, header):
-        """
-        Returns the html source code the website
-        :param url: url of website to get html code
-        :param header: info for browsers
-        :return: a Soup object with html data
-        """
-        return BeautifulSoup(
-            urllib.request.urlopen(urllib.request.Request(url,
-                                                          headers=header)),
-            'html.parser')
 
-    def bing_image_search(self, query):
-        """
-        Returns the urls of the first query search
-        :param query: A string of words
-        :return: a tuple. (the image name, the murl, the turl)
-        """
-        query = query.split()
-        query = '+'.join(query)
-        url = "http://www.bing.com/images/search?q=" + query + "&FORM=HDRSC2"
 
-        header = {
-            'User-Agent':
-            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"
+    def image_search(self, query):
+        url = "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI"
+
+        querystring = {"q": query, "pageNumber": "1", "pageSize": "1", "autoCorrect": "true"}
+
+        headers = {
+            'x-rapidapi-key': "55f51a2243mshbc2295c2780c0bap185cabjsne0fe7d2d67d4",
+            'x-rapidapi-host': "contextualwebsearch-websearch-v1.p.rapidapi.com"
         }
-        soup = self.get_soup(url, header)
-        image_result_raw = soup.find("a", {"class": "iusc"})
 
-        m = json.loads(image_result_raw["m"])
-        murl, turl = m["murl"], m["turl"]
 
-        image_name = urllib.parse.urlsplit(murl).path.split("/")[-1]
-        #murl is the mobile image
-        #turl is the desktop image
-        return (image_name, murl, turl)
+        response = requests.request("GET", url, headers=headers, params=querystring).text
+        j = json.loads(response)
+        img_url = j['value'][0]['url']
+        return img_url
+
 
 
 def clean_query(query):
@@ -57,5 +41,5 @@ def clean_query(query):
       Cleans the query, remove any troublesome characters
     '''
     query = query.encode("ascii", "ignore").decode()
-    query = re.sub(r'[^a-zA-Z0-9 ]','', query).strip()
+    query = re.sub(r'[^a-zA-Z0-9 ]', '', query).strip()
     return query

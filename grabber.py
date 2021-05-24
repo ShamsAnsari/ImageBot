@@ -22,16 +22,15 @@ class Grabber(commands.Cog):
         :return: None
         """
 
-        search = imgsearch.ImageSearch()
         query = imgsearch.clean_query(query)
         if query == "":
             return await ctx.send(f'<@{ctx.author.id}>, No image to grab!')
 
-        url = search.bing_image_search(query)[2]
+        img_url = imgsearch.ImageSearch().image_search(query)
         e = discord.Embed(color=discord.Color.teal(), title=query)
-        e.set_image(url=url)
-
+        e.set_image(url=img_url)
         await ctx.send(embed=e)
+
 
 
 def setup(bot):
