@@ -11,7 +11,7 @@ class Grabber(commands.Cog):
     @commands.command()
     async def grab(self, ctx, *, query: str = ""):
         """
-        Displays image corresponding to query
+        Command "!grab" followed by a description of the image. Bot find the image.
         :param ctx: Discord context
         :param query: A string describing the image
         :return: None
