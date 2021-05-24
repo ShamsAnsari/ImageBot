@@ -1,11 +1,6 @@
 import discord
 from discord.ext import commands
 import imgsearch
-"""
-Group 3 project
-@author Shams Ansari, Kenny (Kyungryun) Kim
-add you name here if you're in this project
-"""
 
 
 class Grabber(commands.Cog):
@@ -16,7 +11,7 @@ class Grabber(commands.Cog):
     @commands.command()
     async def grab(self, ctx, *, query: str = ""):
         """
-        Displays the first image found when searching for query on the bing browser
+        Displays image corresponding to query
         :param ctx: Discord context
         :param query: A string describing the image
         :return: None

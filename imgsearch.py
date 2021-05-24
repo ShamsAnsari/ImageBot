@@ -8,7 +8,7 @@ Searches for images
 import json
 import re
 import requests
-
+import os
 
 
 
@@ -19,12 +19,17 @@ class ImageSearch():
 
 
     def image_search(self, query):
+        """
+        Gets image corresponding to query
+        :param query: a string of words, cleaned for non-ascii and  "troublesome" characters
+        :return: a URL to the image
+        """
         url = "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI"
 
         querystring = {"q": query, "pageNumber": "1", "pageSize": "1", "autoCorrect": "true"}
 
         headers = {
-            'x-rapidapi-key': "55f51a2243mshbc2295c2780c0bap185cabjsne0fe7d2d67d4",
+            'x-rapidapi-key': os.environ['x-rapidapi-key'],
             'x-rapidapi-host': "contextualwebsearch-websearch-v1.p.rapidapi.com"
         }
 
