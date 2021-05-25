@@ -6,17 +6,16 @@ Searches for images
 """
 
 import json
-import re
-import requests
 import os
+import re
+import urllib
 
+import requests
 
 
 class ImageSearch():
     def __init__(self):
         pass
-
-
 
     def image_search(self, query):
         """
@@ -38,8 +37,13 @@ class ImageSearch():
         if len(j['value']) == 0:
             return None
         img_url = j['value'][0]['url']
-        return img_url
 
+        try:
+            urllib.request.urlopen(img_url).getcode()
+        except:
+            return None
+
+        return img_url
 
 
 def clean_query(query):
