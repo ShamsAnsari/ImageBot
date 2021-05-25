@@ -23,6 +23,7 @@ class ImageSearch():
         :param query: a string of words, cleaned for non-ascii and  "troublesome" characters
         :return: a URL to the image
         """
+        print(query)
         url = "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI"
 
         querystring = {"q": query, "pageNumber": "1", "pageSize": "1", "autoCorrect": "true", "safeSearch":"true"}
@@ -37,11 +38,11 @@ class ImageSearch():
         if len(j['value']) == 0:
             return None
         img_url = j['value'][0]['url']
-
-        try:
-            urllib.request.urlopen(img_url).getcode()
-        except:
-            return None
+        print(img_url)
+        # try:
+        #     urllib.request.urlopen(img_url).getcode()
+        # except:
+        #     return None
 
         return img_url
 

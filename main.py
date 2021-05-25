@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # create the bot object
-bot = commands.Bot(command_prefix='!', case_insensitive=True)
+bot = commands.Bot(command_prefix='*', case_insensitive=True)
 
 # list of extensions to load
 extensions = ["grabber"]
@@ -27,7 +27,7 @@ async def on_ready():
     await bot.wait_until_ready()
 
     # set activity status
-    await bot.change_presence(activity=discord.Game('!help'))
+    await bot.change_presence(activity=discord.Game('*help'))
 
 
     print('--------------------------')
