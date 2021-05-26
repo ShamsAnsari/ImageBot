@@ -16,6 +16,7 @@ class ImageSearch():
     def __init__(self):
         pass
 
+
     def image_search(self, query):
         """
         Gets image corresponding to query

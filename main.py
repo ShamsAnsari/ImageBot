@@ -29,7 +29,6 @@ async def on_ready():
     # set activity status
     await bot.change_presence(activity=discord.Game('*help'))
 
-
     print('--------------------------')
     print(f'Logged in as: {bot.user.name}')
     print(f'With ID: {bot.user.id}')
