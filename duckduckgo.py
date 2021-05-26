@@ -46,6 +46,7 @@ def search(keywords, max_results=None):
         ('vqd', searchObj.group(1)),
         ('f', ',,,'),
         ('p', '1'),
+        ('kp', "1"),
         ('v7exp', 'a'),
     )
 
