@@ -19,7 +19,6 @@ class ImageSearch():
     def __init__(self):
         pass
 
-
     def image_search(self, query):
         """
         Gets image corresponding to query
@@ -41,11 +40,6 @@ class ImageSearch():
         if len(j['value']) == 0:
             return None
         img_url = j['value'][0]['url']
-        print(img_url)
-        # try:
-        #     urllib.request.urlopen(img_url).getcode()
-        # except:
-        #     return None
 
         return img_url
 
