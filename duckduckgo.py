@@ -55,7 +55,7 @@ def search(keywords, max_results=None):
 
     res = requests.get(requestUrl, headers=headers, params=params)
     data = json.loads(res.text)
-    if len(data["results"] == 0):
+    if len(data["results"]) == 0:
         return None
     return data["results"][0]['image']
 
