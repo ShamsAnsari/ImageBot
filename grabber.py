@@ -1,3 +1,5 @@
+import os
+
 import discord
 from discord.ext import commands
 import duckduckgo
@@ -25,10 +27,13 @@ class Grabber(commands.Cog):
         if img_url == None:
             return await ctx.send(f'<@{ctx.author.id}>, No image found!')
 
-        e = discord.Embed(color=discord.Color.teal(), title=query)
+        e = discord.Embed(color=discord.Color.purple(), title=query)
         e.set_image(url=img_url)
         await ctx.send(embed=e)
 
+    @commands.command()
+    async def invite(self, ctx):
+        await ctx.send(f'You can invite me with this link! {os.environ.get("INVITE")}')
 
 def setup(bot):
     bot.add_cog(Grabber(bot))
