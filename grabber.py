@@ -1,12 +1,13 @@
 import discord
 from discord.ext import commands
-import imgsearch
+
 import duckduckgo
+import imgsearch
+
 
 class Grabber(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
 
     @commands.command()
     async def grab(self, ctx, *, query: str = ""):
@@ -21,14 +22,13 @@ class Grabber(commands.Cog):
         if query == "":
             return await ctx.send(f'<@{ctx.author.id}>, No image to grab!')
 
-        # img_url = imgsearch.ImageSearch().image_search(query)
-        # if img_url == None:
-        #     return await ctx.send(f'<@{ctx.author.id}>, No image found!')
         img_url = duckduckgo.search(query)
+        if img_url == None:
+            return await ctx.send(f'<@{ctx.author.id}>, No image found!')
+
         e = discord.Embed(color=discord.Color.teal(), title=query)
         e.set_image(url=img_url)
         await ctx.send(embed=e)
-
 
 
 def setup(bot):

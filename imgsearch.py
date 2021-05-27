@@ -3,6 +3,8 @@ Group 3
 Searches for images
 @author Shams Ansari
 # add your name here if you are in this project
+
+LEGACY MODULE
 """
 
 import json
