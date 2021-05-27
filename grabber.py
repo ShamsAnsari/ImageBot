@@ -33,6 +33,11 @@ class Grabber(commands.Cog):
 
     @commands.command()
     async def invite(self, ctx):
+        """
+        Allows user to invite bot to their server
+        :param ctx:
+        :return:
+        """
         await ctx.send(f'You can invite me with this link! {os.environ.get("INVITE")}')
 
 def setup(bot):
