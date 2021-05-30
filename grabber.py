@@ -10,6 +10,7 @@ class Grabber(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+
     @commands.command()
     async def grab(self, ctx, *, query: str = ""):
         """
@@ -38,7 +39,9 @@ class Grabber(commands.Cog):
         :param ctx:
         :return:
         """
-        await ctx.send(f'You can invite me with this link! {os.environ.get("INVITE")}')
+        await ctx.send(f'You can invite me with this link! \n{os.environ.get("INVITE")}')
+
+    
 
 def setup(bot):
     bot.add_cog(Grabber(bot))
