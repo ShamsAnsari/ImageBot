@@ -1,20 +1,22 @@
-import os
+import datetime
 
 import discord
 from discord.ext import commands
+
 import duckduckgo
 import imgsearch
-
+import logger
+import _thread
 
 class Grabber(commands.Cog):
     def __init__(self, bot):
+        self.log = logger.Logger(bot)
         self.bot = bot
-
 
     @commands.command()
     async def grab(self, ctx, *, query: str = ""):
         """
-        Command "!grab" followed by a description of the image. Bot find the image.
+        Command "*grab" followed by a description of the image. Bot find the image.
         :param ctx: Discord context
         :param query: A string describing the image
         :return: None
@@ -32,16 +34,10 @@ class Grabber(commands.Cog):
         e.set_image(url=img_url)
         await ctx.send(embed=e)
 
-    @commands.command()
-    async def invite(self, ctx):
-        """
-        Allows user to invite bot to their server
-        :param ctx:
-        :return:
-        """
-        await ctx.send(f'You can invite me with this link! \n{os.environ.get("INVITE")}')
+        self.log.log_command_wrapper("grab", ctx.author, datetime.datetime.now(),img_url)
 
-    
+
+
 
 def setup(bot):
     bot.add_cog(Grabber(bot))
