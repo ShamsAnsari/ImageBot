@@ -7,10 +7,7 @@ from dotenv import load_dotenv
 # load .env
 load_dotenv()
 
-intents = discord.Intents.all()
-bot = commands.Bot(command_prefix="*",intents=intents,case_insensitive=True)
-
-#bot = commands.Bot(command_prefix='*', case_insensitive=True)
+bot = commands.Bot(command_prefix="*", intents=discord.Intents.all(), case_insensitive=True)
 
 # list of extensions to load
 extensions = ["grabber", "misc"]
