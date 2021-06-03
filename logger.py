@@ -9,7 +9,7 @@ class Logger:
         self.commandlogs_path = "logs/commandlogs.txt"
         self.stats_path = "logs/statslog.txt"
 
-        threading.Timer(30, self.log_stats).start()
+        threading.Timer(86400, self.log_stats).start()
 
     def log_command_wrapper(self, command, user, time, return_image):
         _thread.start_new_thread(self.log_command, (command, user, time, return_image))
