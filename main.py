@@ -11,7 +11,7 @@ load_dotenv()
 bot = commands.Bot(command_prefix='*', case_insensitive=True)
 
 # list of extensions to load
-extensions = ["grabber"]
+extensions = ["grabber", "misc"]
 
 # load extensions
 count = 0
