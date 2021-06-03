@@ -1,6 +1,7 @@
-import requests
-import re
 import json
+import re
+
+import requests
 
 
 def search(keywords, max_results=None):
@@ -8,7 +9,6 @@ def search(keywords, max_results=None):
     params = {
         'q': keywords
     }
-
 
     res = requests.post(url, data=params)
     searchObj = re.search(r'vqd=([\d-]+)\&', res.text, re.M | re.I)
@@ -56,5 +56,3 @@ def printJson(objs):
         print("Title {0}".format(obj["title"].encode('utf-8')))
         print("Image {0}".format(obj["image"]))
         print("__________")
-
-

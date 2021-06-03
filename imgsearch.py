@@ -11,7 +11,6 @@ import json
 import os
 import re
 
-
 import requests
 
 
@@ -28,7 +27,7 @@ class ImageSearch():
         print(query)
         url = "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI"
 
-        querystring = {"q": query, "pageNumber": "1", "pageSize": "1", "autoCorrect": "true", "safeSearch":"true"}
+        querystring = {"q": query, "pageNumber": "1", "pageSize": "1", "autoCorrect": "true", "safeSearch": "true"}
 
         headers = {
             'x-rapidapi-key': os.environ.get('x-rapidapi-key'),
