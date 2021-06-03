@@ -1,15 +1,17 @@
-import os
+import datetime
 
 import discord
 from discord.ext import commands
+
 import duckduckgo
 import imgsearch
-
+import logger
+import _thread
 
 class Grabber(commands.Cog):
     def __init__(self, bot):
+        self.log = logger.Logger(bot)
         self.bot = bot
-
 
     @commands.command()
     async def grab(self, ctx, *, query: str = ""):
@@ -31,6 +33,10 @@ class Grabber(commands.Cog):
         e = discord.Embed(color=discord.Color.purple(), title=query)
         e.set_image(url=img_url)
         await ctx.send(embed=e)
+
+        self.log.log_command_wrapper("grab", ctx.author, datetime.datetime.now(),img_url)
+
+
 
 
 def setup(bot):
