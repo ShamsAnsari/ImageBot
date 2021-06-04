@@ -25,7 +25,7 @@ class Logger:
 
         f = open(self.commandlogs_path, "a")
         f.write(f'{dt_string}\n\tUser: {user}\n\tCommand: {text}\n\tImage: {return_image}'
-                f'\n\tServer: {server}\n\tChannel: {channel}');
+                f'\n\tServer: {server}\n\tChannel: {channel}\n');
         f.close()
 
         print("Logged command ", datetime.datetime.now())
@@ -35,5 +35,6 @@ class Logger:
         f.write(f'{datetime.datetime.now().strftime("Date: %d/%m/%Y  time: %H:%M:%S")}\n'
                 f'Number of server: {len(self.bot.guilds)}\nUsers: {len(self.bot.users)}')
         f.close()
+
 
         print("Logged stats ", datetime.datetime.now())
