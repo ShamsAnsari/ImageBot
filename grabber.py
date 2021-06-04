@@ -8,7 +8,7 @@ import logger
 
 class Grabber(commands.Cog):
     def __init__(self, bot):
-        self.log = logger.Logger(bot)
+        self.log = logger.CommandLogger(bot)
         self.bot = bot
 
     @commands.command()

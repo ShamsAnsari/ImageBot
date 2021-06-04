@@ -1,5 +1,5 @@
 import os
-
+import logger
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -7,7 +7,10 @@ from dotenv import load_dotenv
 # load .env
 load_dotenv()
 
+# create bot
 bot = commands.Bot(command_prefix="*", intents=discord.Intents.all(), case_insensitive=True)
+
+# create logger
 
 # list of extensions to load
 extensions = ["grabber", "misc"]
@@ -33,6 +36,7 @@ async def on_ready():
     print(f'With ID: {bot.user.id}')
     print(f'Loaded {count} extensions')
     print('--------------------------')
+    logger.StatsLogger(bot)
 
 
 bot.run(os.environ.get('TOKEN'))

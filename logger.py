@@ -1,17 +1,49 @@
 import datetime
+import json
+import os
 import threading
 import _thread
+import requests
 
 
-class Logger:
-
+class StatsLogger:
     def __init__(self, bot):
+        self.num_servers = 0
+        self.num_users = 0
         self.bot = bot
-        self.commandlogs_path = "logs/commandlogs.txt"
         self.stats_path = "logs/statslog.txt"
+        self.bot_list_api_key = os.environ.get("DISCORD_BOT_LIST_API_KEY")
+        self.id = os.environ.get("ID")
+
+        self.log_stats()
 
         # update server stats every day
         threading.Timer(86400, self.log_stats).start()
+
+    def send_stats(self):
+        url = f'https://api.discordbotslist.co/v1/public/bot/{self.id}/stats'
+        h = {"authorization": self.bot_list_api_key, "content-type": "application/json"}
+        b = json.dumps({"serverCount": self.num_servers}, separators=(',', ':'))
+        re = requests.post(f"https://api.discordbotslist.co/v1/public/bot/{self.id}/stats", headers=h, data=b)
+        print("Sent stats", re.text)
+
+    def log_stats(self):
+        self.num_servers = len(self.bot.guilds)
+        self.num_users = len(self.bot.users)
+
+        f = open(self.stats_path, "w")
+        f.write(f'{datetime.datetime.now().strftime("Date: %d/%m/%Y  time: %H:%M:%S")}\n'
+                f'Number of server: {self.num_servers}\nUsers: {self.num_users}')
+        f.close()
+        print("Logged stats ", datetime.datetime.now())
+
+        self.send_stats()
+
+
+class CommandLogger:
+    def __init__(self, bot):
+        self.bot = bot
+        self.commandlogs_path = "logs/commandlogs.txt"
 
     def log_command_wrapper(self, ctx, return_image):
         _thread.start_new_thread(self.log_command, (ctx, return_image))
@@ -29,12 +61,3 @@ class Logger:
         f.close()
 
         print("Logged command ", datetime.datetime.now())
-
-    def log_stats(self):
-        f = open(self.stats_path, "w")
-        f.write(f'{datetime.datetime.now().strftime("Date: %d/%m/%Y  time: %H:%M:%S")}\n'
-                f'Number of server: {len(self.bot.guilds)}\nUsers: {len(self.bot.users)}')
-        f.close()
-
-
-        print("Logged stats ", datetime.datetime.now())
