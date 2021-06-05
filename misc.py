@@ -4,19 +4,19 @@ import discord
 from discord.ext import commands
 
 
-
 class Misc(commands.Cog):
     def __init__(self, bot):
+        self.repolink = "https://github.com/ShamsAnsari/ImageBot"
         self.bot = bot
 
     @commands.command()
-    async def invite(self, ctx):
-        """
-        Allows user to invite bot to their server
-        :param ctx:
-        :return:
-        """
-        await ctx.send(f'You can invite me with this link! \n{os.environ.get("INVITE")}')
+    async def help(self, ctx):
+        description = f'[:robot: Invite me!]({os.environ.get("INVITE")})\n[:information_source: Github Repo]({self.repolink})'
+        e = discord.Embed(color=discord.Color.purple(), title="Help Menu", description=description)
+        e.add_field(name="*grab", value="Type \"*grab\" followed by a couple words to search for an image",
+                    inline=False)
+        e.add_field(name="*help", value="Type \"*help\" for the help menu", inline=False)
+        await ctx.send(embed=e)
 
 
 def setup(bot):

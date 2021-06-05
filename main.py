@@ -1,14 +1,16 @@
 import os
-import logger
+
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
+
+import logger
 
 # load .env
 load_dotenv()
 
 # create bot
-bot = commands.Bot(command_prefix="*", intents=discord.Intents.all(), case_insensitive=True)
+bot = commands.Bot(command_prefix="*", intents=discord.Intents.all(), case_insensitive=True, help_command=None)
 
 # create logger
 
@@ -39,4 +41,4 @@ async def on_ready():
     logger.StatsLogger(bot)
 
 
-bot.run(os.environ.get('TOKEN'))
+bot.run(os.environ.get('TOKEN_TEST'))
