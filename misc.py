@@ -16,6 +16,7 @@ class Misc(commands.Cog):
         e.add_field(name="*grab", value="Type \"*grab\" followed by a couple words to search for an image",
                     inline=False)
         e.add_field(name="*help", value="Type \"*help\" for the help menu", inline=False)
+        e.set_image(url="https://media.giphy.com/media/Lt5eOpMHfyHveYg8Bu/giphy.gif")
         await ctx.send(embed=e)
 
 
