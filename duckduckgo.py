@@ -4,7 +4,7 @@ import re
 import requests
 
 
-def search(keywords, max_results=None):
+def search(keywords, result_num=0):
     url = 'https://duckduckgo.com/'
     params = {
         'q': keywords
@@ -43,9 +43,10 @@ def search(keywords, max_results=None):
 
     res = requests.get(requestUrl, headers=headers, params=params)
     data = json.loads(res.text)
+
     if len(data["results"]) == 0:
         return None
-    return data["results"][0]['image']
+    return data["results"][result_num]['image']
 
 
 def printJson(objs):

@@ -19,7 +19,7 @@ class StatsLogger:
         self.log_stats()
 
         # update server stats every day
-        threading.Timer(86400, self.log_stats).start()
+        threading.Timer(86400/4, self.log_stats).start()
 
     def send_stats(self):
         url = f'https://api.discordbotslist.co/v1/public/bot/{self.id}/stats'
