@@ -50,6 +50,13 @@ class CommandLogger:
         _thread.start_new_thread(self.log_command, (ctx, return_image))
 
     def log_command(self, ctx, return_image):
+        """
+        Logs the "grab" command into a txt file everytime it is called
+        :param ctx:
+        :param return_image: url image of result of grab command
+
+        :return:
+        """
         dt_string = datetime.datetime.now().strftime("Date: %d/%m/%Y  time: %H:%M:%S")
         text = ctx.message.content
         user = ctx.author
