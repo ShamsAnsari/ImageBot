@@ -44,6 +44,9 @@ def search(keywords, result_num=0):
     res = requests.get(requestUrl, headers=headers, params=params)
     data = json.loads(res.text)
 
+    if result_num >= len(data['results']):
+        result_num = len(data["results"]) - 1
+
     if len(data["results"]) == 0:
         return None
     return data["results"][result_num]['image']

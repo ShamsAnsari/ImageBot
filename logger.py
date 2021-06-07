@@ -16,12 +16,16 @@ class StatsLogger:
         self.bot_list_api_key = os.environ.get("DISCORD_BOT_LIST_API_KEY")
         self.id = os.environ.get("ID")
 
-        self.log_stats()
+        #self.log_stats()
 
         # update server stats every day
-        threading.Timer(86400/4, self.log_stats).start()
+        #threading.Timer(86400, self.log_stats).start()
 
     def send_stats(self):
+        """
+         Sends stats to discordbotslist.com
+        :return:
+        """
         url = f'https://api.discordbotslist.co/v1/public/bot/{self.id}/stats'
         h = {"authorization": self.bot_list_api_key, "content-type": "application/json"}
         b = json.dumps({"serverCount": self.num_servers}, separators=(',', ':'))
@@ -29,6 +33,10 @@ class StatsLogger:
         print("Sent stats", re.text)
 
     def log_stats(self):
+        """
+        Logs stats to txt and also calls send_stats()
+        :return:
+        """
         self.num_servers = len(self.bot.guilds)
         self.num_users = len(self.bot.users)
 
