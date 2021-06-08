@@ -18,3 +18,4 @@ Bot will <b>not</b> return NSFW (Not safe for work)/Profane images.
 
 # Stats
 Currently serving 2228 people
+Bot online 24/7
