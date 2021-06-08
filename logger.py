@@ -41,7 +41,7 @@ class StatsLogger:
         self.num_users = len(self.bot.users)
 
         f = open(self.stats_path, "w")
-        f.write(f'{datetime.datetime.now().strftime("Date: %d/%m/%Y  time: %H:%M:%S")}\n'
+        f.write(f'{datetime.datetime.now().strftime("Date: %m/%d/%Y  time: %H:%M:%S")}\n'
                 f'Number of server: {self.num_servers}\nUsers: {self.num_users}')
         f.close()
         print("Logged stats ", datetime.datetime.now())
