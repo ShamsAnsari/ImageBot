@@ -65,7 +65,7 @@ class CommandLogger:
 
         :return:
         """
-        dt_string = datetime.datetime.now().strftime("Date: %d/%m/%Y  time: %H:%M:%S")
+        dt_string = datetime.datetime.now().strftime("Date: %m/%d/%Y  time: %H:%M:%S")
         text = ctx.message.content
         user = ctx.author
         server = ctx.message.guild.name
