@@ -6,5 +6,5 @@ Bot will <b>not</b> return NSFW (Not safe for work)/Profane images.
 
 #Example 
 
+<img src="https://raw.githubusercontent.com/ShamsAnsari/ImageBot/master/res/Example_car2.PNG" alt="Cady example" width="200"/>
 
-![Cady example](https://raw.githubusercontent.com/ShamsAnsari/ImageBot/master/res/Example_car2.PNG)
