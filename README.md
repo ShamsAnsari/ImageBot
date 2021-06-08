@@ -5,4 +5,6 @@ By typing "*grab" followed by a string of words the image bot searches the web f
 Bot will <b>not</b> return NSFW (Not safe for work)/Profane images.
 
 #Example 
+
+
 ![Cady example](https://raw.githubusercontent.com/ShamsAnsari/ImageBot/master/res/Example_car2.PNG)
