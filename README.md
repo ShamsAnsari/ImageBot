@@ -10,3 +10,5 @@ Bot will <b>not</b> return NSFW (Not safe for work)/Profane images.
 
 # [Invite Me To Your chat!](https://discord.com/api/oauth2/authorize?client_id=845463498384343051&permissions=3678404177&scope=bot)
 
+# Stats
+Currently serving 2228 people
