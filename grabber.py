@@ -1,10 +1,11 @@
+import random
+
 import discord
 from discord.ext import commands
 
 import duckduckgo
 import imgsearch
 import logger
-import random
 
 
 class Grabber(commands.Cog):
@@ -37,6 +38,11 @@ class Grabber(commands.Cog):
         self.log.log_command_wrapper(ctx, img_url)
 
     def get_image_num(self, msg):
+        '''
+        Gets number inside < > brackets
+        :param msg:
+        :return:
+        '''
         if msg.find("<") >= 0 and msg.find(">") >= 0:
             num = msg[msg.find('<') + 1:msg.find('>')]
             if num.isdigit():
@@ -45,7 +51,8 @@ class Grabber(commands.Cog):
 
     async def send_error(self, ctx):
         """
-        Sends an image of a funny cat if there is no image found
+        Sends an image of a funny cat if there is no image found.
+        Codes are error codes on website
         :param ctx:
         :return:
         """
@@ -56,6 +63,30 @@ class Grabber(commands.Cog):
         e = discord.Embed(color=discord.Color.purple())
         e.set_image(url=f'https://http.cat/{codes[random.randrange(0, len(codes))]}')
         return await ctx.send(embed=e)
+
+    @commands.command()
+    async def grabpp(self, ctx, *, user: discord.User = None):
+        """
+        Grab's profile picture of person mentioned in message or author of message if no one is mentioned.
+        :param ctx:
+        :param user:
+        :return:
+        """
+        if user is None:
+            user = ctx.author
+        image = user.avatar_url
+        e = discord.Embed(color=discord.Color.purple(), title=f'{user.display_name}\'s Profile Picture')
+        e.set_image(url=image)
+        await ctx.send(embed=e)
+
+    # @commands.command()
+    # async def scramblepp(self, ctx, *, user: discord.User = None):
+    #     if user is None:
+    #         user = ctx.author
+    #     image = user.avatar_url
+    #     e = discord.Embed(color=discord.Color.purple(), title=f'{user.display_name}\'s PP')
+    #     e.set_image(url=image)
+    #     await ctx.send(embed=e)
 
 
 def setup(bot):
