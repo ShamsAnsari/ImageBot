@@ -3,7 +3,6 @@ import re
 
 import discord
 from discord.ext import commands
-import cv2
 import duckduckgo
 import logger
 
