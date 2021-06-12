@@ -46,7 +46,7 @@ class StatsLogger:
         f.close()
         print("Logged stats ", datetime.datetime.now())
 
-        self.send_stats()
+        #self.send_stats()
 
 
 class CommandLogger:

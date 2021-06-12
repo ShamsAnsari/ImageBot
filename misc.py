@@ -1,8 +1,11 @@
 import os
 import random
+from pathlib import Path
 
 import discord
 from discord.ext import commands
+
+import photomosaic
 
 
 class Misc(commands.Cog):
@@ -28,6 +31,28 @@ class Misc(commands.Cog):
         e.set_footer(text="Email shamsahmedansari@gmail.com for bugs.")
         await ctx.send(embed=e)
 
+    @commands.command()
+    async def photomosaic(self, ctx):
+        if not bool(ctx.guild.icon_url):
+            print("jumble: No icon found")
+            return
+
+        # save icon
+        image_url = str(ctx.guild.icon_url)
+        dir = os.path.join(os.getcwd(),'mosaic',str(ctx.guild.id))
+        Path(dir).mkdir(parents=True, exist_ok=True)
+        image_path = os.path.join(dir, 'icon.png')
+        await ctx.guild.icon_url.save(image_path)
+
+        #save images
+        dir_avatars = os.path.join(dir, 'avatars')
+        Path(dir_avatars).mkdir(parents=True,exist_ok=True)
+        for member in ctx.guild.members:
+            await member.avatar_url.save(os.path.join(dir_avatars, f'{member.id}.png'))
+        output_path = photomosaic.create_mosaic(dir,image_path, dir_avatars)
+        print(output_path)
+        await ctx.send(file=output_path)
+        print("Jumbled")
 
 def setup(bot):
     bot.add_cog(Misc(bot))
