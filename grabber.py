@@ -1,11 +1,13 @@
+import os
 import random
 import re
+from pathlib import Path
 
 import discord
 from discord.ext import commands
 import duckduckgo
 import logger
-
+import photomosaic
 
 
 class Grabber(commands.Cog):
@@ -36,6 +38,40 @@ class Grabber(commands.Cog):
         self.log.log_command_wrapper(ctx, img_url)
 
     @commands.command()
+    async def photomosaic(self, ctx, user: discord.User = None):
+
+        if user is None and not bool(ctx.guild.icon_url):
+            print("jumble: No icon found")
+            return
+        if user is None:
+            print("No @")
+            image_url = ctx.guild.icon_url
+
+        await ctx.send('This may take a while, please wait.')
+        # save icon
+        image_url = user.avatar_url  # str(ctx.guild.icon_url)
+        dir = os.path.join(os.getcwd(), 'mosaic', str(ctx.guild.id))
+        Path(dir).mkdir(parents=True, exist_ok=True)
+        image_path = os.path.join(dir, 'icon.png')
+        await image_url.save(image_path)
+
+        # save images
+        dir_avatars = os.path.join(dir, 'avatars')
+        Path(dir_avatars).mkdir(parents=True, exist_ok=True)
+        for member in ctx.guild.members:
+            await member.avatar_url.save(os.path.join(dir_avatars, f'{member.id}.png'))
+        output_path = photomosaic.create_mosaic(dir, image_path, dir_avatars)
+        print(output_path)
+        output_img = discord.File(output_path)
+        await ctx.send(
+            'This is a mosaic of your icon created with the profile pictures of the people in this server. '
+            'ZOOM in to see each individual Profile picture')
+
+        await ctx.send(file=output_img)
+        self.log.log_command_wrapper(ctx, str(image_url))
+        print("Jumbled")
+
+    @commands.command()
     async def grabpp(self, ctx, *, user: discord.User = None):
         """
         Grab's profile picture of person mentioned in message or author of message if no one is mentioned.
@@ -49,6 +85,7 @@ class Grabber(commands.Cog):
         e = discord.Embed(color=discord.Color.purple(), title=f'{user.display_name}\'s Profile Picture')
         e.set_image(url=image)
         await ctx.send(embed=e)
+        self.log.log_command_wrapper(ctx, str(image))
 
 
     @staticmethod
