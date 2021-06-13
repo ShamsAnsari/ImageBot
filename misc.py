@@ -28,14 +28,17 @@ class Misc(commands.Cog):
 
         # grabpp
         e.add_field(name="*grabpp", value="Type \"*grabpp\" and @ (mention) someone to get their profile picture.")
+        # info
+        e.add_field(name="*stats", value="Type \"*info\" for the bot stats", inline=False)
         # help command
         e.add_field(name="*help", value="Type \"*help\" for the help menu", inline=False)
         e.set_image(url="https://media.giphy.com/media/Lt5eOpMHfyHveYg8Bu/giphy.gif")
         e.set_footer(text="Email shamsahmedansari@gmail.com for bugs.")
         await ctx.send(embed=e)
 
-
-
+    @commands.command()
+    async def stats(self, ctx):
+        await ctx.send(f'Number of server: {len(self.bot.guilds)}\n Number of people: {len(self.bot.users)}')
 
 
 def setup(bot):
