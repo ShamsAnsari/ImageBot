@@ -27,6 +27,7 @@ class Misc(commands.Cog):
         e.add_field(name="*grabpp", value="Type \"*grabpp\" and @ (mention) someone to get their profile picture.")
         # help command
         e.add_field(name="*help", value="Type \"*help\" for the help menu", inline=False)
+        e.add_field(name="*photomosaic", value="Type \"*photomosaic\" and @ (mention) someone to craete a photomosaic of their profile picture.", inline=False)
         e.set_image(url="https://media.giphy.com/media/Lt5eOpMHfyHveYg8Bu/giphy.gif")
         e.set_footer(text="Email shamsahmedansari@gmail.com for bugs.")
         await ctx.send(embed=e)
