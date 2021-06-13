@@ -34,7 +34,7 @@ def resize_target_image(input_image):
     w, h = input_image.size
     # SCALE = int(math.sqrt(178956970) // max(w, h))
 
-    SCALE = int(math.sqrt(37000000) // max(w, h))  # with tile size of 35, under 8mb for disc
+    SCALE = int(math.sqrt(25000000) // max(w, h))  # with tile size of 35, under 8mb for disc
     input_image = input_image.resize((w * SCALE, h * SCALE)).convert("RGB")
     w, h = input_image.size
     input_image = input_image.crop((0, 0, w - w % TILE_SIZE, h - h % TILE_SIZE))
@@ -46,9 +46,12 @@ def resize_target_image(input_image):
 #         print('Usage: {} <image> <input images directory>\r'.format(sys.argv[0]))
 #         exit()
 
-TILE_SIZE = 35
+
+
+TILE_SIZE = 50
 
 def create_mosaic(server_dir, image_path, avatars_path):
+
     tiles_dir = avatars_path
     input_image = resize_target_image(Image.open(image_path).copy())
     w, h = input_image.size
