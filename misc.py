@@ -29,7 +29,7 @@ class Misc(commands.Cog):
         # grabpp
         e.add_field(name="*grabpp", value="Type \"*grabpp\" and @ (mention) someone to get their profile picture.")
         # info
-        e.add_field(name="*stats", value="Type \"*info\" for the bot stats", inline=False)
+        e.add_field(name="*stats", value="Type \"*stats\" for the bot stats", inline=False)
         # help command
         e.add_field(name="*help", value="Type \"*help\" for the help menu", inline=False)
         e.set_image(url="https://media.giphy.com/media/Lt5eOpMHfyHveYg8Bu/giphy.gif")
