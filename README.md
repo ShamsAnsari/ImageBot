@@ -14,7 +14,7 @@ Returns the following <br/>
 • Type "\*grabpp\" and @ (mention) someone to get their profile picture. <br/>
 • Type "\*help" for the help menu
 
- 
+ • The mosaic is created with profiles pictures of the people in the server
 
 # [Invite Me To Your chat!](https://discord.com/api/oauth2/authorize?client_id=845463498384343051&permissions=3678404177&scope=bot)
 
