@@ -1,8 +1,7 @@
 # ImageBot
 
-The ImageBot is a discord bot. The discord bot is used for quick image searches. 
-By typing "\*grab" followed by a string of words the image bot searches the web for the appropriate image and pastes it into the chat.
-Bot will <b>not</b> return NSFW (Not safe for work)/Profane images.
+The ImageBot is a discord bot. The discord bot is used for quick image searches. Or creating beautiful photomosaic images.
+NSFW filter is on.
 
 # Example 
 <img src="https://raw.githubusercontent.com/ShamsAnsari/ImageBot/master/res/peter_ex.PNG" alt="peter example"/>
