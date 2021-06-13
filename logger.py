@@ -42,11 +42,16 @@ class StatsLogger:
 
         f = open(self.stats_path, "w")
         f.write(f'{datetime.datetime.now().strftime("Date: %m/%d/%Y  time: %H:%M:%S")}\n'
-                f'Number of server: {self.num_servers}\nUsers: {self.num_users}')
+                f'Number of server: {self.num_servers}\nUsers: {self.num_users}\n')
+
+        f.write('Guilds:\n')
+        for guild in self.bot.guilds:
+            f.write(guild.name + "\n")
         f.close()
+
         print("Logged stats ", datetime.datetime.now())
 
-        #self.send_stats()
+        self.send_stats()
 
 
 class CommandLogger:
