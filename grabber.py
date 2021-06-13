@@ -57,13 +57,14 @@ class Grabber(commands.Cog):
         image_file = open(image_path, "wb")
         image_file.write(response.content)
         image_file.close()
-
+        print(image_path)
         # save images
         dir_avatars = os.path.join(dir, 'avatars')
         Path(dir_avatars).mkdir(parents=True, exist_ok=True)
         for member in ctx.guild.members:
             await member.avatar_url.save(os.path.join(dir_avatars, f'{member.id}.JPG'))
         output_path = photomosaic.create_mosaic(dir, image_path, dir_avatars)
+
         print(output_path)
         output_img = discord.File(output_path)
         await ctx.send(
