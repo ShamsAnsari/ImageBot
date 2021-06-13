@@ -105,7 +105,7 @@ def create_mosaic(server_dir, image_path, avatars_path):
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
     output_image_path = os.path.join(output_dir, 'output_image.jpeg')
-    output_image.save(output_image_path)
+    output_image.save(output_image_path, "jpeg")
     return output_image_path
 
     # for i in range(100):

@@ -50,14 +50,14 @@ class Grabber(commands.Cog):
         image_url = user.avatar_url  # str(ctx.guild.icon_url)
         dir = os.path.join(os.getcwd(), 'mosaic', str(ctx.guild.id))
         Path(dir).mkdir(parents=True, exist_ok=True)
-        image_path = os.path.join(dir, 'icon.png')
+        image_path = os.path.join(dir, 'icon.JPG')
         await image_url.save(image_path)
 
         # save images
         dir_avatars = os.path.join(dir, 'avatars')
         Path(dir_avatars).mkdir(parents=True, exist_ok=True)
         for member in ctx.guild.members:
-            await member.avatar_url.save(os.path.join(dir_avatars, f'{member.id}.png'))
+            await member.avatar_url.save(os.path.join(dir_avatars, f'{member.id}.JPG'))
         output_path = photomosaic.create_mosaic(dir, image_path, dir_avatars)
         print(output_path)
         output_img = discord.File(output_path)
