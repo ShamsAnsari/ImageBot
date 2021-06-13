@@ -24,7 +24,7 @@ class Misc(commands.Cog):
                     value="Type \\*grab <optional num> followed by a couple words to search for an image.",
                     inline=False)
         # photomosaic
-        e.add_field(name="*photomosaic", value="Type \"*photomosaic\" and @ (mention) someone to craete a photomosaic of their profile picture.", inline=False)
+        e.add_field(name="*photomosaic", value="Type \"*photomosaic\" and @ (mention) someone to craete a photomosaic of their profile picture. (Still in beta)", inline=False)
 
         # grabpp
         e.add_field(name="*grabpp", value="Type \"*grabpp\" and @ (mention) someone to get their profile picture.")
