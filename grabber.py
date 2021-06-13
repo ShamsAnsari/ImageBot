@@ -4,6 +4,7 @@ import re
 from pathlib import Path
 
 import discord
+import requests
 from discord.ext import commands
 import duckduckgo
 import logger
@@ -43,15 +44,19 @@ class Grabber(commands.Cog):
         if user is None :
             await ctx.send('No one mentioned')
             return
-
-
         await ctx.send('This may take a while, please wait.')
-        # save icon
-        image_url = user.avatar_url  # str(ctx.guild.icon_url)
+
         dir = os.path.join(os.getcwd(), 'mosaic', str(ctx.guild.id))
+
+        # save icon
+
+        response = requests.get(str(user.avatar_url))
+
         Path(dir).mkdir(parents=True, exist_ok=True)
-        image_path = os.path.join(dir, 'icon.JPG')
-        await image_url.save(image_path)
+        image_path = os.path.join(dir, 'icon.png')
+        image_file = open(image_path, "wb")
+        image_file.write(response.content)
+        image_file.close()
 
         # save images
         dir_avatars = os.path.join(dir, 'avatars')
@@ -66,7 +71,7 @@ class Grabber(commands.Cog):
             'ZOOM in to see each individual Profile picture')
 
         await ctx.send(file=output_img)
-        self.log.log_command_wrapper(ctx, str(image_url))
+        self.log.log_command_wrapper(ctx, str(user.avatar_url))
         print("Jumbled")
 
     @commands.command()
