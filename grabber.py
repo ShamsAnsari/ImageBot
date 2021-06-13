@@ -40,12 +40,10 @@ class Grabber(commands.Cog):
     @commands.command()
     async def photomosaic(self, ctx, user: discord.User = None):
 
-        if user is None and not bool(ctx.guild.icon_url):
-            print("jumble: No icon found")
+        if user is None :
+            await ctx.send('No one mentioned')
             return
-        if user is None:
-            print("No @")
-            image_url = ctx.guild.icon_url
+
 
         await ctx.send('This may take a while, please wait.')
         # save icon

@@ -1,11 +1,11 @@
 import os
-import random
-from pathlib import Path
+
+
 
 import discord
 from discord.ext import commands
 
-import photomosaic
+
 
 
 class Misc(commands.Cog):
