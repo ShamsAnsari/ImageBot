@@ -1,8 +1,11 @@
 import os
 import random
+from pathlib import Path
 
 import discord
 from discord.ext import commands
+
+import photomosaic
 
 
 class Misc(commands.Cog):
@@ -20,6 +23,9 @@ class Misc(commands.Cog):
         e.add_field(name="*grab",
                     value="Type \\*grab <optional num> followed by a couple words to search for an image.",
                     inline=False)
+        # photomosaic
+        e.add_field(name="*photomosaic", value="Type \"*photomosaic\" and @ (mention) someone to craete a photomosaic of their profile picture. (Still in beta)", inline=False)
+
         # grabpp
         e.add_field(name="*grabpp", value="Type \"*grabpp\" and @ (mention) someone to get their profile picture.")
         # help command
@@ -27,6 +33,9 @@ class Misc(commands.Cog):
         e.set_image(url="https://media.giphy.com/media/Lt5eOpMHfyHveYg8Bu/giphy.gif")
         e.set_footer(text="Email shamsahmedansari@gmail.com for bugs.")
         await ctx.send(embed=e)
+
+
+
 
 
 def setup(bot):
