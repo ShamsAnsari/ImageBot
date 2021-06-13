@@ -8,8 +8,9 @@ Bot will <b>not</b> return NSFW (Not safe for work)/Profane images.
 
 <img src="https://raw.githubusercontent.com/ShamsAnsari/ImageBot/master/res/Example_car2.PNG" alt="Cady example" width="400"/>
 
-• Type "\*grab" followed by a couple words<br/>
-• Type "\*grab \<n>" followed by a couple words to get the nth image in a search<br/>
+• Type "\*grab" followed by a couple words  to search for a image or the nth image. <optional number in brackets> to search for the nth image<br/>
+• Type "\*photomosaic" and @ (mention) to create a photomosaic of their profile picture.<br/>
+• Type "\*grabpp\" and @ (mention) someone to get their profile picture. <br/>
 • Type "\*help" for the help menu
 
  
