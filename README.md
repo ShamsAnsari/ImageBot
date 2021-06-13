@@ -5,7 +5,8 @@ By typing "\*grab" followed by a string of words the image bot searches the web 
 Bot will <b>not</b> return NSFW (Not safe for work)/Profane images.
 
 # Example 
-
+<img src="https://raw.githubusercontent.com/ShamsAnsari/ImageBot/master/res/peter_ex.PNG" alt="peter example"/>
+<img src="https://github.com/ShamsAnsari/ImageBot/blob/master/res/peter_pp.jpeg" width="500"/>
 <img src="https://raw.githubusercontent.com/ShamsAnsari/ImageBot/master/res/Example_car2.PNG" alt="Cady example" width="400"/>
 
 • Type "\*grab" followed by a couple words  to search for a image or the nth image. <optional number in brackets> to search for the nth image<br/>
