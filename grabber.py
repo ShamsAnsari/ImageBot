@@ -53,7 +53,7 @@ class Grabber(commands.Cog):
         response = requests.get(str(user.avatar_url))
 
         Path(dir).mkdir(parents=True, exist_ok=True)
-        image_path = os.path.join(dir, 'icon.png')
+        image_path = os.path.join(dir, 'icon.jpeg')
         image_file = open(image_path, "wb")
         image_file.write(response.content)
         image_file.close()
@@ -62,7 +62,7 @@ class Grabber(commands.Cog):
         dir_avatars = os.path.join(dir, 'avatars')
         Path(dir_avatars).mkdir(parents=True, exist_ok=True)
         for member in ctx.guild.members:
-            await member.avatar_url.save(os.path.join(dir_avatars, f'{member.id}.JPG'))
+            await member.avatar_url.save(os.path.join(dir_avatars, f'{member.id}.jpeg'))
         output_path = photomosaic.create_mosaic(dir, image_path, dir_avatars)
 
         print(output_path)
