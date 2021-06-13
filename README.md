@@ -6,7 +6,7 @@ NSFW filter is on.
 # Example 
 <img src="https://raw.githubusercontent.com/ShamsAnsari/ImageBot/master/res/peter_ex.PNG" alt="peter example"/>
 Returns the following <br/>
-<img src="https://raw.githubusercontent.com/ShamsAnsari/ImageBot/master/res/peter_pp.PNG" width="600"/>
+<img src="https://github.com/ShamsAnsari/ImageBot/blob/master/res/peter_pp.jpeg" width="600"/>
 <img src="https://raw.githubusercontent.com/ShamsAnsari/ImageBot/master/res/Example_car2.PNG" alt="Cady example" width="400"/>
 
 • Type "\*grab" followed by a couple words  to search for a image or the nth image. <optional number in brackets> to search for the nth image<br/>
