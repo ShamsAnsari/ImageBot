@@ -6,10 +6,11 @@ from pathlib import Path
 import discord
 import requests
 from discord.ext import commands
+
 import duckduckgo
 import logger
 import photomosaic
-from profanity_check import predict, predict_prob
+
 
 class Grabber(commands.Cog):
     def __init__(self, bot):
@@ -24,10 +25,12 @@ class Grabber(commands.Cog):
         :param query: A string describing the image
         :return: None
         """
+        if  (not ctx.channel.nsfw):
+            return await ctx.send("🔞 NSFW Command. Please switch to NSFW channel in order to use this command.")
+
         result_num = self.get_num(query)
         query = Grabber.clean_query(Grabber.clean_brackets(query))
-        if predit(query)[0] > 0.9:
-            return await self.send("Profanity was found")
+
         if query == "": return await self.send_error(ctx)
 
         img_url = duckduckgo.search(query, result_num)
@@ -42,7 +45,7 @@ class Grabber(commands.Cog):
     @commands.command()
     async def photomosaic(self, ctx, user: discord.User = None):
 
-        if user is None :
+        if user is None:
             await ctx.send('No one mentioned')
             return
         await ctx.send('This may take a while, please wait.')
@@ -91,7 +94,6 @@ class Grabber(commands.Cog):
         e.set_image(url=image)
         await ctx.send(embed=e)
         self.log.log_command_wrapper(ctx, str(image))
-
 
     @staticmethod
     def get_num(msg):
