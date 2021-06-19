@@ -9,7 +9,7 @@ from discord.ext import commands
 import duckduckgo
 import logger
 import photomosaic
-
+from profanity_check import predict, predict_prob
 
 class Grabber(commands.Cog):
     def __init__(self, bot):
@@ -26,7 +26,8 @@ class Grabber(commands.Cog):
         """
         result_num = self.get_num(query)
         query = Grabber.clean_query(Grabber.clean_brackets(query))
-
+        if predit(query)[0] > 0.9:
+            return await self.send("Profanity was found")
         if query == "": return await self.send_error(ctx)
 
         img_url = duckduckgo.search(query, result_num)
