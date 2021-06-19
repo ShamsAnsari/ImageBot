@@ -26,7 +26,7 @@ class Grabber(commands.Cog):
         :return: None
         """
         if  (not ctx.channel.nsfw):
-            return await ctx.send("🔞 NSFW Command. Please switch to NSFW channel in order to use this command.")
+            return await ctx.send("🔞 There was a problem with the code. For now NSFW filter has stopped working.")
 
         result_num = self.get_num(query)
         query = Grabber.clean_query(Grabber.clean_brackets(query))
