@@ -10,10 +10,13 @@ from discord.ext import commands
 import duckduckgo
 import logger
 import photomosaic
+from better_profanity import profanity
+
 
 
 class Grabber(commands.Cog):
     def __init__(self, bot):
+        profanity.load_censor_words()
         self.log = logger.CommandLogger(bot)
         self.bot = bot
 
@@ -24,12 +27,10 @@ class Grabber(commands.Cog):
         :param ctx: Discord context
         :param query: A string describing the image
         :return: None
-        """
-        if  (not ctx.channel.nsfw):
-            return await ctx.send("🔞 There was a problem with the code. For now NSFW filter has stopped working.")
+        # """
 
         result_num = self.get_num(query)
-        query = Grabber.clean_query(Grabber.clean_brackets(query))
+        query = self.clean_query(Grabber.clean_brackets(query))
 
         if query == "": return await self.send_error(ctx)
 
@@ -124,11 +125,11 @@ class Grabber(commands.Cog):
         e.set_image(url=f'https://http.cat/{codes[random.randrange(0, len(codes))]}')
         return await ctx.send(embed=e)
 
-    @staticmethod
-    def clean_query(query):
+    def clean_query(self, query):
         """
           Cleans the query, remove any troublesome characters
         """
+        query = profanity.censor(query)
         query = query.encode("ascii", "ignore").decode()
         query = re.sub(r'[^a-zA-Z0-9 ]', '', query).strip()
         return query

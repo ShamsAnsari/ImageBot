@@ -7,7 +7,7 @@ import requests
 def search(keywords, result_num=0):
     url = 'https://duckduckgo.com/'
     params = {
-        'q': keywords,
+        'q': keywords
     }
 
     res = requests.post(url, data=params)
@@ -30,17 +30,18 @@ def search(keywords, result_num=0):
     }
 
     params = (
-        ('kp', '1'),
+
         ('l', 'us-en'),
         ('o', 'json'),
         ('q', keywords),
         ('vqd', searchObj.group(1)),
         ('f', ',,,'),
         ('p', '1'),
+        ('kp', '1'),
         ('v7exp', 'a'),
     )
 
-    requestUrl = url +  "i.js"
+    requestUrl = url + "i.js"
 
     res = requests.get(requestUrl, headers=headers, params=params)
     data = json.loads(res.text)
