@@ -19,5 +19,5 @@ Returns the following <br/>
 # [Invite Me To Your chat!](https://discord.com/api/oauth2/authorize?client_id=845463498384343051&permissions=3678404177&scope=bot)
 
 # Stats
-Currently serving 5000+ people<br/>
+Currently serving 10,000+ people<br/>
 Bot online 24/7
