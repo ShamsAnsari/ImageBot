@@ -29,9 +29,6 @@ class Grabber(commands.Cog):
         :return: None
         # """
 
-        if ctx.guild.name == "DiscordBotsList.co":
-            return ctx.send("Bot banned in this server")
-
         result_num = self.get_num(query)
         query = self.clean_query(Grabber.clean_brackets(query))
 
@@ -49,10 +46,6 @@ class Grabber(commands.Cog):
 
     @commands.command()
     async def photomosaic(self, ctx, user: discord.User = None):
-
-        if ctx.author.id == "568935313314021414":
-            return ctx.send("Unable to execute command")
-
         if user is None:
             await ctx.send('No one mentioned')
             return
