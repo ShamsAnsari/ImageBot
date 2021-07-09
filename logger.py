@@ -16,10 +16,10 @@ class StatsLogger:
         self.bot_list_api_key = os.environ.get("DISCORD_BOT_LIST_API_KEY")
         self.id = os.environ.get("ID")
 
-        self.log_stats()
+        #self.log_stats()
 
         # update server stats every day
-        threading.Timer(86400/24, self.log_stats).start()
+        threading.Timer(1800, self.log_stats).start()
 
     def send_stats(self):
         """
