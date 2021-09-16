@@ -33,7 +33,7 @@ class Misc(commands.Cog):
         # help command
         e.add_field(name="*help", value="Type \"*help\" for the help menu", inline=False)
         e.set_image(url="https://media.giphy.com/media/Lt5eOpMHfyHveYg8Bu/giphy.gif")
-        e.set_footer(text="Email shamsahmedansari@gmail.com for bugs.")
+        e.set_footer(text="Website: www.shamsansari.org/html/imagebot.html")
         await ctx.send(embed=e)
 
     @commands.command()
