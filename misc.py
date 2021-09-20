@@ -11,11 +11,12 @@ from discord.ext import commands
 class Misc(commands.Cog):
     def __init__(self, bot):
         self.repolink = "https://github.com/ShamsAnsari/ImageBot"
+        self.website = "www.shamsansari.org/html/imagebot.html"
         self.bot = bot
 
     @commands.command()
     async def help(self, ctx):
-        description = f'[:robot: Invite me!]({os.environ.get("INVITE")})\n[:information_source: Github Repo]({self.repolink})\n[WEBSITE](www.shamsansari.org/html/imagebot.html)'
+        description = f'[:robot: Invite me!]({os.environ.get("INVITE")})\n[:information_source: Github Repo]({self.repolink})\n[:spider_web: Website]({self.website})'
 
         e = discord.Embed(color=discord.Color.purple(), title="Help Menu", description=description)
 
