@@ -11,7 +11,7 @@ from discord.ext import commands
 class Misc(commands.Cog):
     def __init__(self, bot):
         self.repolink = "https://github.com/ShamsAnsari/ImageBot"
-        self.website = "www.shamsansari.org/html/imagebot.html"
+        self.website = "https://www.shamsansari.org/html/imagebot.html"
         self.bot = bot
 
     @commands.command()
