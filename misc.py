@@ -15,7 +15,7 @@ class Misc(commands.Cog):
 
     @commands.command()
     async def help(self, ctx):
-        description = f'[:robot: Invite me!]({os.environ.get("INVITE")})\n[:information_source: Github Repo]({self.repolink})'
+        description = f'[:robot: Invite me!]({os.environ.get("INVITE")})\n[:information_source: Github Repo]({self.repolink})\n[WEBSITE](www.shamsansari.org/html/imagebot.html)'
 
         e = discord.Embed(color=discord.Color.purple(), title="Help Menu", description=description)
 
@@ -33,7 +33,7 @@ class Misc(commands.Cog):
         # help command
         e.add_field(name="*help", value="Type \"*help\" for the help menu", inline=False)
         e.set_image(url="https://media.giphy.com/media/Lt5eOpMHfyHveYg8Bu/giphy.gif")
-        e.set_footer(text=f'[WEBSITE](www.shamsansari.org/html/imagebot.html)')
+        e.set_footer(text=f'For bugs email: shamsahmedansari@gmail.com')
         await ctx.send(embed=e)
 
     @commands.command()
