@@ -17,7 +17,7 @@ from better_profanity import profanity
 class Grabber(commands.Cog):
     def __init__(self, bot):
         profanity.load_censor_words()
-        self.log = logger.CommandLogger(bot)
+        #self.log = logger.CommandLogger(bot)
         self.bot = bot
 
     @commands.command()
@@ -41,7 +41,7 @@ class Grabber(commands.Cog):
         e = discord.Embed(color=discord.Color.purple(), title=query)
         e.set_image(url=img_url)
         await ctx.send(embed=e)
-        self.log.log_command_wrapper(ctx, img_url)
+        #self.log.log_command_wrapper(ctx, img_url)
 
 
     @commands.command()
@@ -77,7 +77,7 @@ class Grabber(commands.Cog):
             'ZOOM in to see each individual Profile picture')
 
         await ctx.send(file=output_img)
-        self.log.log_command_wrapper(ctx, str(user.avatar_url))
+        #self.log.log_command_wrapper(ctx, str(user.avatar_url))
         print("Jumbled")
 
     @commands.command()
@@ -94,7 +94,7 @@ class Grabber(commands.Cog):
         e = discord.Embed(color=discord.Color.purple(), title=f'{user.display_name}\'s Profile Picture')
         e.set_image(url=image)
         await ctx.send(embed=e)
-        self.log.log_command_wrapper(ctx, str(image))
+        #self.log.log_command_wrapper(ctx, str(image))
 
     @staticmethod
     def get_num(msg):

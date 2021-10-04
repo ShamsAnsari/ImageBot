@@ -16,7 +16,7 @@ class StatsLogger:
         self.bot_list_api_key = os.environ.get("DISCORD_BOT_LIST_API_KEY")
         self.id = os.environ.get("ID")
 
-        #self.log_stats()
+        self.log_stats()
 
         # update server stats every day
         threading.Timer(1800, self.log_stats).start()
@@ -42,10 +42,10 @@ class StatsLogger:
 
         f = open(self.stats_path, "w")
         f.write(f'{datetime.datetime.now().strftime("Date: %m/%d/%Y  time: %H:%M:%S")}\n'
-                f'Number of server: {self.num_servers}\nUsers: {self.num_users}')
+                f'Number of server: {self.num_servers}\nUsers: {self.num_users}\n')
         f.write('Guilds:\n')
         for guild in self.bot.guilds:
-            f.write(f"{guild.name}: {guild.member_count}" + "\n")
+            f.write(f"\t{guild.name}: {guild.member_count}" + "\n")
         f.close()
         f.close()
         print("Logged stats ", datetime.datetime.now())
