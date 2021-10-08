@@ -50,7 +50,7 @@ def resize_target_image(input_image):
 
 TILE_SIZE = 50
 
-def create_mosaic(server_dir, image_path, avatars_path):
+def create_mosaic(user, server_dir, image_path, avatars_path):
 
     tiles_dir = avatars_path
     input_image = resize_target_image(Image.open(image_path).copy())
@@ -104,7 +104,7 @@ def create_mosaic(server_dir, image_path, avatars_path):
     output_dir = os.path.join(server_dir, "output_images")
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
-    output_image_path = os.path.join(output_dir, 'output_image.jpeg')
+    output_image_path = os.path.join(output_dir, f'output_{user.id}.jpeg')
     output_image.save(output_image_path, "jpeg")
     return output_image_path
 

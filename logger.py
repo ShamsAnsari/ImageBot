@@ -3,6 +3,7 @@ import datetime
 import json
 import os
 import threading
+from pathlib import Path
 
 import requests
 
@@ -13,13 +14,21 @@ class StatsLogger:
         self.num_users = 0
         self.bot = bot
         self.stats_path = "logs/statslog.txt"
+        self.server_stats_path = "logs/server_stats.txt"
         self.bot_list_api_key = os.environ.get("DISCORD_BOT_LIST_API_KEY")
         self.id = os.environ.get("ID")
 
+
+
+        Path(os.path.join(os.getcwd(), "logs")).mkdir(parents=True, exist_ok=True)
+        open(self.stats_path, "w+").close()
+        open(self.server_stats_path, "w+").close()
+
         self.log_stats()
+        self.log_server_stats()
 
         # update server stats every day
-        threading.Timer(1800, self.log_stats).start()
+        #threading.Timer(1800, self.log_stats).start()
 
     def send_stats(self):
         """
@@ -51,6 +60,17 @@ class StatsLogger:
         print("Logged stats ", datetime.datetime.now())
 
         self.send_stats()
+
+    def log_server_stats(self):
+        server_stats_file = open(self.server_stats_path, "w")
+        guilds = {}
+        for guild in self.bot.guilds:
+            guilds[guild.id] = guild.member_count
+        server_stats_file.write(json.dumps(guilds))
+        server_stats_file.close()
+
+
+
 
 
 class CommandLogger:
