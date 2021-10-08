@@ -41,4 +41,4 @@ async def on_ready():
     logger.StatsLogger(bot)
 
 
-bot.run(os.environ.get('TOKEN'))
+bot.run(os.environ.get('TOKEN_TEST'))

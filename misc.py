@@ -37,9 +37,9 @@ class Misc(commands.Cog):
         e.set_footer(text=f'For bugs email: shamsahmedansari@gmail.com')
         await ctx.send(embed=e)
 
-    @commands.command()
-    async def stats(self, ctx):
-        await ctx.send(f'Number of server: {len(self.bot.guilds)}\n Number of people: {len(self.bot.users)}')
+    # @commands.command()
+    # async def stats(self, ctx):
+    #     await ctx.send(f'Number of server: {len(self.bot.guilds)}\n Number of people: {len(self.bot.users)}')
 
 
 def setup(bot):

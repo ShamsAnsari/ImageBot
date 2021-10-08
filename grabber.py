@@ -1,6 +1,8 @@
+import json
 import os
 import random
 import re
+import shutil
 from pathlib import Path
 
 import discord
@@ -17,8 +19,9 @@ from better_profanity import profanity
 class Grabber(commands.Cog):
     def __init__(self, bot):
         profanity.load_censor_words()
-        #self.log = logger.CommandLogger(bot)
+        self.log = logger.CommandLogger(bot)
         self.bot = bot
+        self.stats_logger = logger.StatsLogger(bot)
 
     @commands.command()
     async def grab(self, ctx, *, query: str = ""):
@@ -49,26 +52,50 @@ class Grabber(commands.Cog):
         if user is None:
             await ctx.send('No one mentioned')
             return
+
         await ctx.send('This may take a while, please wait.')
 
+        #Make directory for server, if doesn't exist
         dir = os.path.join(os.getcwd(), 'mosaic', str(ctx.guild.id))
+        Path(dir).mkdir(parents=True, exist_ok=True)
+
+        # Make stats file if doesnt exist
+        data_dir = os.path.join(dir, "data")
+        Path(data_dir).mkdir(parents="True", exist_ok=True)
+
+
 
         # save icon
-
         response = requests.get(str(user.avatar_url))
-
-        Path(dir).mkdir(parents=True, exist_ok=True)
         image_path = os.path.join(dir, 'icon.jpeg')
         image_file = open(image_path, "wb")
         image_file.write(response.content)
         image_file.close()
         print(image_path)
-        # save images
+
+
+        # Check if redownload is needed
+        old_guilds = json.loads(open(self.stats_logger.server_stats_path, "r").read())
+        self.stats_logger.log_server_stats()
+        new_guilds = json.loads(open(self.stats_logger.server_stats_path, "r").read())
         dir_avatars = os.path.join(dir, 'avatars')
-        Path(dir_avatars).mkdir(parents=True, exist_ok=True)
-        for member in ctx.guild.members:
-            await member.avatar_url.save(os.path.join(dir_avatars, f'{member.id}.jpeg'))
-        output_path = photomosaic.create_mosaic(dir, image_path, dir_avatars)
+        if old_guilds[str(ctx.guild.id)] != new_guilds[str(ctx.guild.id)]:
+            dir_data = os.path.join(dir, "data")
+            if os.path.exists(dir_avatars):
+                shutil.rmtree(dir_avatars)
+            if os.path.exists(dir_data):
+                shutil.rmtree(dir_data)
+
+            Path(dir_avatars).mkdir(parents=True, exist_ok=True)
+            for member in ctx.guild.members:
+                await member.avatar_url.save(os.path.join(dir_avatars, f'{member.id}.jpeg'))
+
+        if not os.path.exists(os.path.join(dir, "output_images")):
+            Path(dir_avatars).mkdir(parents=True, exist_ok=True)
+            for member in ctx.guild.members:
+                await member.avatar_url.save(os.path.join(dir_avatars, f'{member.id}.jpeg'))
+
+        output_path = photomosaic.create_mosaic(user, dir, image_path, dir_avatars)
 
         print(output_path)
         output_img = discord.File(output_path)
@@ -77,8 +104,6 @@ class Grabber(commands.Cog):
             'ZOOM in to see each individual Profile picture')
 
         await ctx.send(file=output_img)
-        #self.log.log_command_wrapper(ctx, str(user.avatar_url))
-        print("Jumbled")
 
     @commands.command()
     async def grabpp(self, ctx, *, user: discord.User = None):
