@@ -8,9 +8,12 @@ import logger
 
 # load .env
 load_dotenv()
+intents = discord.Intents.default()
+intents.presences = False
+intents.members = True
 
 # create bot
-bot = commands.Bot(command_prefix="*", intents=discord.Intents.members, case_insensitive=True, help_command=None)
+bot = commands.Bot(command_prefix="*", intents=intents, case_insensitive=True, help_command=None)
 
 # create logger
 
