@@ -15,8 +15,6 @@ intents.members = True
 # create bot
 bot = commands.Bot(command_prefix="*", intents=intents, case_insensitive=True, help_command=None)
 
-# create logger
-
 # list of extensions to load
 extensions = ["grabber", "misc"]
 
