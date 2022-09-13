@@ -1,4 +1,5 @@
 # ImageBot
+**OUTDATED** Doesn't support / commands
 website: https://www.shamsansari.org/html/imagebot.html <br>
 The ImageBot is a discord bot. The discord bot is used for quick image searches. Or creating beautiful photomosaic images.
 NSFW filter is on.
